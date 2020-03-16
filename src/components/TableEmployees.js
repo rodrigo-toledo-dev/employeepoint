@@ -7,21 +7,15 @@ const TableEmployees = ({employees, dispatch }) => {
   // const [employee, setEmployee] = useState(false);
   // const [operation, setOperation] = useState(false);
   // const [operations, setOperations] = useState(false);
-  // const resetData = employeeName => {
-  //   setEmployee(employeeName);
-  //   setOperation(false);
-  //   setOperations(false);
-  // };
+
   return (
     <View>
-      {this.employees.map((employee) => },
-      \
-      <EmployeeSelect onPress={() => resetData('Izabele')}>
-        <EmployeeImage source={require('~/assets/isabele.jpeg')} />
-      </EmployeeSelect>
-      <EmployeeSelect onPress={() => resetData('Nathalie')}>
-        <EmployeeImage source={require('~/assets/natali.jpg')} />
-      </EmployeeSelect>
+      {employees.map(employee => 
+        <EmployeeSelect onPress={() => dispatch({type: 'RESET_DATA', employee: employee})}>
+          <EmployeeImage source={require('~/assets/{employee}.jpg')} />
+        </EmployeeSelect>
+        )
+      }
     </View>
   );
 };
