@@ -13,10 +13,11 @@ import {
   EmployeeSelect,
   H3,
   Table,
-  TableEmployees,
   TableOperations,
   RowEmployees,
 } from '~/components';
+
+import TableEmployees from '~/components/TableEmployees';
 
 import {
   StatusBar,
@@ -69,6 +70,7 @@ const App = () => {
       setOperation(_operation);
     });
   };
+
   return (
     <Provider store={store}>
       <StatusBar barStyle="light-content" />
@@ -78,10 +80,7 @@ const App = () => {
 
           <H3>Sistema de Ponto Filó</H3>
           <Container>
-            <Text>aaa</Text>
-            
             <TableEmployees />
-            <Text>Ola</Text>
             {employee && (
               <RowEmployees>
                 <H3>Oi {employee}, você tem duas opções na empresa</H3>
@@ -100,6 +99,7 @@ const App = () => {
                 </TableOperations>
               </RowEmployees>
             )}
+            
           </Container>
           {employee && operations && (
             <>
