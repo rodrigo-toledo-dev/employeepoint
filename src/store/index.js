@@ -1,16 +1,18 @@
 import { createStore } from 'redux';
 
-const resetData = employee => {
-  setEmployee(employee);
-  setOperation(false);
-  setOperations(false);
-};
+import axios from 'axios';
 
-const INTIAL_STATE = ['Fazer Cafe', 'Estudar'];
+// const resetData = employee => {
+//   setEmployee(employee);
+//   setOperation(false);
+//   setOperations(false);
+// };
+
+const INTIAL_STATE = [{id: 0, name: 'Nathalie'}, {id: 1, name: 'Izabele'}];
 
 function reducer(state = INTIAL_STATE, action){
   if (action.type === 'RESET_DATA') {
-    resetData(action.employee);
+    // resetData(action.employee);
   }
 }
 

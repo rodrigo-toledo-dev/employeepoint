@@ -3,16 +3,17 @@ import {View} from 'react-native';
 import {EmployeeSelect, EmployeeImage} from '~/components';
 import {connect} from 'react-redux';
 
-const TableEmployees = ({employees, dispatch }) => {
+const TableEmployees = () => {
   // const [employee, setEmployee] = useState(false);
   // const [operation, setOperation] = useState(false);
   // const [operations, setOperations] = useState(false);
+  const employees = [{id: 0, name: 'Nathalie'}, {id: 1, name: 'Izabele'}];
 
   return (
-    <View>
+    <View>{console.log('employees')}
       {employees.map(employee => 
-        <EmployeeSelect onPress={() => dispatch({type: 'RESET_DATA', employee: employee})}>
-          <EmployeeImage source={require('~/assets/{employee}.jpg')} />
+        <EmployeeSelect key={employee.id} onPress={() => dispatch({type: 'RESET_DATA', employee: employee.id})}>
+          <EmployeeImage source={require('~/assets/{employee.name}.jpg')} />
         </EmployeeSelect>
         )
       }
@@ -24,4 +25,4 @@ const mapStateToProps => state({
 
 });
 
-export default connect()(TableEmployees);
+export default TableEmployees;

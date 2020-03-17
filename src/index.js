@@ -78,7 +78,10 @@ const App = () => {
 
           <H3>Sistema de Ponto Filó</H3>
           <Container>
+            <Text>aaa</Text>
+            
             <TableEmployees />
+            <Text>Ola</Text>
             {employee && (
               <RowEmployees>
                 <H3>Oi {employee}, você tem duas opções na empresa</H3>
