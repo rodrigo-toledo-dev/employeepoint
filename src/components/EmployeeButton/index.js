@@ -1,11 +1,7 @@
 import React from 'react';
-import { Image } from 'react-native';
-import { EmployeeImage } from '~/components/EmployeeImage'
+import EmployeeImage from '~/components/EmployeeImage'
 
 const EmployeeButton = ({ employee }) => {
-  // const image = require(`../../assets/${employee.name}.jpg`);
-  return (
-    <EmployeeImage />
-  );
+  return <EmployeeImage employee={employee} />;
 };
 export default EmployeeButton;
