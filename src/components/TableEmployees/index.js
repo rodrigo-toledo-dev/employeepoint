@@ -1,33 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {Text} from 'react-native';
 
-import EmployeeButton from '~/components/EmployeeButton';
-import { EmployeesGroup } from './styles';
+import EmployeeImage from '~/components/EmployeeImage';
+import {EmployeesGroup, EmployeeButton} from './styles';
 
-const TableEmployees = () => {
-  const employees = [
-    {
-      id: 0,
-      name: 'Nathalie',
-      imageProfile: require('~/assets/Nathalie.jpg'),
-    },
-    {
-      id: 1,
-      name: 'Izabele',
-      imageProfile: require('~/assets/Izabele.jpg')
-    },
-  ];
+const TableEmployees = ({employees, dispatch}) => {
 
   return (
     <EmployeesGroup>
       {employees.map(employee => (
         <EmployeeButton
-          employee={employee}
           key={employee.id}
-          onPress={() => {}}
-        />
+          onPress={() => dispatch({type: 'SET_EMPLOYEE', id: employee.id})}>
+            <EmployeeImage employee={employee} />
+        </EmployeeButton>
       ))}
     </EmployeesGroup>
   );
 };
 
-export default TableEmployees;
+const mapStateToProps = state => ({
+  employees: state,
+});
+
+export default connect(mapStateToProps)(TableEmployees);

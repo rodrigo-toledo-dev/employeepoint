@@ -9,8 +9,6 @@ import {
   Body,
   Container,
   CustomImage,
-  EmployeeImage,
-  EmployeeSelect,
   H3,
   Table,
   TableOperations,

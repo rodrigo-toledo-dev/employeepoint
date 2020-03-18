@@ -15,30 +15,12 @@ export const CustomImage = styled.Image`
   border-radius: 100px;
 `;
 
-// export const EmployeeImage = styled.Image`
-//   justify-content: center;
-//   align-self: center;
-//   width: 120px;
-//   height: 120px;
-//   border-radius: 100px;
-//   border-color: #91768b;
-//   border-width: 5px
-// `;
-
 export const Container = styled.View`
   margin: 5px;
   padding: 5px;
   border: 5px solid #91768b;
   border-radius: 10px;
 `;
-
-// export const EmployeeSelect = styled.TouchableOpacity`
-//   justify-content: center;
-//   align-self: center;
-//   width: 160px;
-//   height: 160px;
-//   border-radius: 100px;
-// `;
 
 export const H3 = styled.Text`
   margin: 5px;
@@ -56,22 +38,12 @@ export const Table = styled.View`
   width: 100%;
 `;
 
-// export const TableEmployees = styled.View`
-//   flex-direction: row;
-//   justify-content: space-between;
-//   padding: 10px;
-//   margin-top: 10px;
-//   background-color: transparent;
-//   width: 100%;
-// `;
-
 export const TableOperations = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-self: center;
   width: 60%;
 `;
-
 
 export const RowEmployees = styled.View`
   padding: 10px;

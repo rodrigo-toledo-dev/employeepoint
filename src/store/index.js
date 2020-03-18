@@ -8,7 +8,20 @@ import axios from 'axios';
 //   setOperations(false);
 // };
 
-const INTIAL_STATE = [{id: 0, name: 'Nathalie'}, {id: 1, name: 'Izabele'}];
+const INTIAL_STATE = [
+  [
+    {
+      id: 0,
+      name: 'Nathalie',
+      imageProfile: require('~/assets/Nathalie.jpg'),
+    },
+    {
+      id: 1,
+      name: 'Izabele',
+      imageProfile: require('~/assets/Izabele.jpg'),
+    },
+  ],
+];
 
 function reducer(state = INTIAL_STATE, action){
   if (action.type === 'RESET_DATA') {

@@ -7,5 +7,12 @@ export const EmployeesGroup = styled.View`
   padding: 10px;
   margin-top: 10px;
   background-color: transparent;
-  width: 80%;
+`;
+
+
+export const EmployeeButton = styled.TouchableOpacity`
+  justify-content: center;
+  align-self: center;
+  width: 160px;
+  height: 160px;
 `;
