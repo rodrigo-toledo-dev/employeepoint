@@ -1,6 +1,6 @@
 const INTIAL_STATE = {};
 
-export default function reducer(state = INTIAL_STATE, action) {
+export default function SetEmployee(state = INTIAL_STATE, action) {
   switch (action.type) {
     default:
       return state;
