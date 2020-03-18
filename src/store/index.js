@@ -1,34 +1,13 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 
 import axios from 'axios';
 
-// const resetData = employee => {
-//   setEmployee(employee);
-//   setOperation(false);
-//   setOperations(false);
-// };
+import operations from './reducers'
 
-const INTIAL_STATE = [
-  [
-    {
-      id: 0,
-      name: 'Nathalie',
-      imageProfile: require('~/assets/Nathalie.jpg'),
-    },
-    {
-      id: 1,
-      name: 'Izabele',
-      imageProfile: require('~/assets/Izabele.jpg'),
-    },
-  ],
-];
+const composer = __DEV__
+  ? compose(applyMiddleware(...[]), console.tron.createEnhancer())
+  : applyMiddleware(...[]);
 
-function reducer(state = INTIAL_STATE, action){
-  if (action.type === 'RESET_DATA') {
-    // resetData(action.employee);
-  }
-}
-
-const store = createStore(reducer);
+const store = createStore(operations, composer);
 
 export default store;
