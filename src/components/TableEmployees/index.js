@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import * as OperationsActions from '~/store/actions/operations';
+import * as OperationsActions from '~/store/actions/employees';
 
 import EmployeeImage from '~/components/EmployeeImage';
-import {EmployeesGroup, EmployeeButton, RowEmployees} from './styles';
+import {EmployeesGroup, EmployeeButton, RowEmployees, TableOperations} from './styles';
 
-const TableEmployees = ({setEmployee, startWork, stopWork}) => {
+import { Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { H3 } from '~/pages/GeneralStyles';
+
+const TableEmployees = () => {
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [employeeName, setEmployeeName] = useState('');
+
+  const confirmOperation = (action) => {
+
+  }
   const employees = [
     {
       id: 0,
@@ -26,17 +31,42 @@ const TableEmployees = ({setEmployee, startWork, stopWork}) => {
       imageProfile: require('~/assets/Izabele.jpg'),
     },
   ];
+
+  const handleEmployee = (employeeId) => {
+
+    const employee = employees.filter(employee => employee.id.toString().includes(employeeId.toString())).shift();
+    setSelectedEmployee(employee.id);
+    setEmployeeName(employee.name);
+  }
   return (
     <>
       <EmployeesGroup>
         {employees.map(employee => (
           <EmployeeButton
             key={employee.id}
-            onPress={() => setEmployee(employee.id)}>
+            onPress={() => handleEmployee(employee.id)}>
             <EmployeeImage employee={employee} />
           </EmployeeButton>
         ))}
       </EmployeesGroup>
+      {selectedEmployee !== null && (
+        <RowEmployees>
+          <H3>Oi {employeeName}, você tem duas opções na empresa</H3>
+          <TableOperations>
+            <TouchableOpacity
+              onPress={() => confirmOperation('Marcar Chegada')}>
+              <Icon name="check-circle" size={60} color="#5b5f63" />
+              <Text>Chegar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => confirmOperation('Marcar Saída')}>
+              <Icon name="share-square" size={60} color="#5b5f63" />
+              <Text>Sair</Text>
+            </TouchableOpacity>
+          </TableOperations>
+        </RowEmployees>
+      )}
     </>
   );
 };
