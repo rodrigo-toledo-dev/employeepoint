@@ -1,43 +1,69 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {Text, TouchableOpacity, Alert, AsyncStorage} from 'react-native';
 
-import * as OperationsActions from '~/store/actions/employees';
+import * as EmployeesActions from '~/store/actions/employees';
 
 import EmployeeImage from '~/components/EmployeeImage';
 import {EmployeesGroup, EmployeeButton, RowEmployees, TableOperations} from './styles';
-
-import { Text, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 import { H3 } from '~/pages/GeneralStyles';
 
-const TableEmployees = () => {
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import Environment from '~/config/environment';
+import axios from 'axios';
+
+const TableEmployees = ({navigation}) => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [employeeName, setEmployeeName] = useState('');
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    setEmployees([
+      {
+        id: 0,
+        name: 'Nathalie',
+        imageProfile: require('~/assets/Nathalie.jpg'),
+      },
+      {
+        id: 1,
+        name: 'Izabele',
+        imageProfile: require('~/assets/Izabele.jpg'),
+      },
+    ]);
+  }, [])
 
-  const confirmOperation = (action) => {
-
-  }
-  const employees = [
-    {
-      id: 0,
-      name: 'Nathalie',
-      imageProfile: require('~/assets/Nathalie.jpg'),
-    },
-    {
-      id: 1,
-      name: 'Izabele',
-      imageProfile: require('~/assets/Izabele.jpg'),
-    },
-  ];
 
   const handleEmployee = (employeeId) => {
-
     const employee = employees.filter(employee => employee.id.toString().includes(employeeId.toString())).shift();
-    setSelectedEmployee(employee.id);
-    setEmployeeName(employee.name);
+    setSelectedEmployee(employee);
   }
+
+  const confirmOperation = operation => {
+    Alert.alert(
+      'Confirmar operação',
+      `Deseja confirmar a operação (${operation})?`,
+      [
+        {
+          text: 'Não',
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {text: 'Sim', onPress: () => registerOperation(operation)},
+      ],
+    );
+  };
+
+  const registerOperation = (operation) => {
+    const newOperation = {
+      employee: selectedEmployee,
+      operation: operation,
+    };
+    const url = `${Environment.API_URL}/operations`;
+    axios.post(url, newOperation).then(response => {
+      navigation.navigate('Operations', { selectedEmployee: selectedEmployee })
+    });
+  };
   return (
     <>
       <EmployeesGroup>
@@ -51,7 +77,7 @@ const TableEmployees = () => {
       </EmployeesGroup>
       {selectedEmployee !== null && (
         <RowEmployees>
-          <H3>Oi {employeeName}, você tem duas opções na empresa</H3>
+          <H3>Oi {selectedEmployee.name}, você tem duas opções na empresa</H3>
           <TableOperations>
             <TouchableOpacity
               onPress={() => confirmOperation('Marcar Chegada')}>
@@ -59,8 +85,7 @@ const TableEmployees = () => {
               <Text>Chegar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => confirmOperation('Marcar Saída')}>
+            <TouchableOpacity onPress={() => confirmOperation('Marcar Saída')}>
               <Icon name="share-square" size={60} color="#5b5f63" />
               <Text>Sair</Text>
             </TouchableOpacity>
@@ -72,10 +97,12 @@ const TableEmployees = () => {
 };
 
 const mapStateToProps = state => ({
-  employees: state,
+  operations: state,
+  selectedEmployee: state,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(OperationsActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(EmployeesActions, dispatch);
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableEmployees);

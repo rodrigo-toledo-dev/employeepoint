@@ -1,16 +1,42 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import React from 'react';
+
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
 import SetEmployee from '~/pages/SetEmployee';
 import Operations from '~/pages/Operations';
 
-const Navigation = createSwitchNavigator({
-    SetEmployee: {
-      screen: SetEmployee,
+export default createAppContainer(
+  createStackNavigator(
+    {
+      SetEmployee: {
+        screen: SetEmployee,
+        navigationOptions: {
+          headerShown: false,
+        },
+      },
+      Operations: {
+        screen: Operations,
+        // navigationOptions: {
+        //   headerShown: false,
+        // },
+      },
     },
-    Operations: {
-      screen: Operations,
-    },
-  });
+    // {
+    //   initialRouteName: 'SetEmployee',
+    // },
+  ),
+);
 
-const Routes = createAppContainer(Navigation)
-export default Routes;
+// function Routes() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator>
+//         <Stack.Screen name="SetEmployee" component={SetEmployee} />
+//         <Stack.Screen name="Operations" component={Operations} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+// export default Routes;

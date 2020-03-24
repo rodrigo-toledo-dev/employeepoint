@@ -2,10 +2,10 @@ import styled from 'styled-components/native';
 
 export const Body = styled.View`
   flex: 1;
-  padding: 20px;
+  padding: 40px;
   background: #d6c5d2;
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const Container = styled.View`

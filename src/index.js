@@ -38,10 +38,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const App = () => {
   const [employee, setEmployee] = useState(false);
-  const [operation, setOperation] = useState(false);
-  const [operations, setOperations] = useState(false);
-
-  
 
   const confirmOperation = _operation => {
     Alert.alert(

@@ -1,8 +1,8 @@
-const INTIAL_STATE = [];
+const INITIAL_STATE = [];
 
-export default function Operations(state = INTIAL_STATE, action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
+export default function Operations(state = INITIAL_STATE, action) {
+                 switch (action.type) {
+                   default:
+                     return state;
+                 }
+               }

@@ -1,9 +1,9 @@
-export const startWork = id => ({
+export const StartWork = id => ({
   type: 'START_WORK',
   payload: {id},
 });
 
-export const stopWork = id => ({
+export const StopWork = id => ({
   type: 'STOP_WORK',
   payload: {id},
 });
