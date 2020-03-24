@@ -36,7 +36,7 @@ const Operations = ({navigation}) => {
     <>
       <Body>
         <ApplicationImage source={require('~/assets/logo.jpg')} />
-        <H3>List of Day Operations {selectedEmployeeName}</H3>
+        <H3>Lista de Pontos de {selectedEmployeeName}</H3>
         <Container></Container>
       </Body>
     </>

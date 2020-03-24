@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {Text, TouchableOpacity, Alert, AsyncStorage} from 'react-native';
+import {Text, TouchableOpacity, Alert} from 'react-native';
 
 import * as EmployeesActions from '~/store/actions/employees';
 
@@ -17,6 +17,7 @@ import axios from 'axios';
 
 const TableEmployees = ({navigation}) => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedAction, setSelectedAction] = useState(null);
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
     setEmployees([
@@ -34,9 +35,15 @@ const TableEmployees = ({navigation}) => {
   }, [])
 
 
-  const handleEmployee = (employeeId) => {
-    const employee = employees.filter(employee => employee.id.toString().includes(employeeId.toString())).shift();
-    setSelectedEmployee(employee);
+  const handleEmployee = employee => {
+    // const employee = employees.filter(employee => employee.id.toString().includes(employeeId.toString())).shift();
+    const url = `${Environment.API_URL}/next_actions_for=${employee.name}`;
+    console.log(url)
+    // axios.get(url).then(response => {
+    //   console.log(response)
+    //   // setSelectedEmployee(employee);
+    //   // setSelectedAction(employee);
+    // });
   }
 
   const confirmOperation = operation => {
@@ -54,15 +61,16 @@ const TableEmployees = ({navigation}) => {
     );
   };
 
-  const registerOperation = (operation) => {
+  const registerOperation = operation => {
     const newOperation = {
       employee: selectedEmployee,
       operation: operation,
     };
     const url = `${Environment.API_URL}/operations`;
-    axios.post(url, newOperation).then(response => {
-      navigation.navigate('Operations', { selectedEmployee: selectedEmployee })
-    });
+    console.log(url)
+    // axios.post(url, newOperation).then(response => {
+    //   navigation.navigate('Operations', { selectedEmployee: selectedEmployee })
+    // });
   };
   return (
     <>
@@ -70,7 +78,7 @@ const TableEmployees = ({navigation}) => {
         {employees.map(employee => (
           <EmployeeButton
             key={employee.id}
-            onPress={() => handleEmployee(employee.id)}>
+            onPress={() => handleEmployee(employee)}>
             <EmployeeImage employee={employee} />
           </EmployeeButton>
         ))}

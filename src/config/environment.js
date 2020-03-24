@@ -1,9 +1,6 @@
-var _Environments = {
-  // production: {API_URL: 'https://filomobileapi.herokuapp.com'},
-  production: {API_URL: 'http://localhost:3000'},
-  // development: {API_URL: 'https://filoapi.herokuapp.com/api'},
-  // development: {API_URL: 'https://filomobileapi.herokuapp.com'},
-  development: {API_URL: 'http://localhost:3000'},
+var Environments = {
+  production: {API_URL: 'https://filomobileapi.herokuapp.com'},
+  development: {API_URL: 'https://filomobileapi.herokuapp.com'},
 };
 
 function getEnvironment() {
@@ -11,6 +8,6 @@ function getEnvironment() {
   var platform = __DEV__ ? 'development' : 'production';
 
   // ...now return the correct environment
-  return _Environments[platform];
+  return Environments[platform];
 }
 module.exports = getEnvironment();

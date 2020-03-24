@@ -6,7 +6,7 @@ export default function SetEmployee({navigation}) {
   return (
     <Body>
       <ApplicationImage source={require('~/assets/logo.jpg')} />
-      <H3>Workout Point Filó</H3>
+      <H3>Controle de Horas Filó</H3>
       <Container>
         <TableEmployees navigation={navigation} />
       </Container>
