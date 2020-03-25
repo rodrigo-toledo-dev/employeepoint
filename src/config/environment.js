@@ -1,6 +1,9 @@
 var Environments = {
-  production: {API_URL: 'https://filomobileapi.herokuapp.com'},
-  development: {API_URL: 'https://filomobileapi.herokuapp.com'},
+  // production: {API_URL: 'https://filomobileapi.herokuapp.com'},
+  // development: {API_URL: 'https://filomobileapi.herokuapp.com'},
+
+  production: {API_URL: 'http://192.168.0.103'},
+  development: {API_URL: 'http://192.168.0.103'},
 };
 
 function getEnvironment() {

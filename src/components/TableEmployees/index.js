@@ -37,13 +37,13 @@ const TableEmployees = ({navigation}) => {
 
   const handleEmployee = employee => {
     // const employee = employees.filter(employee => employee.id.toString().includes(employeeId.toString())).shift();
-    const url = `${Environment.API_URL}/next_actions_for=${employee.name}`;
-    console.log(url)
-    // axios.get(url).then(response => {
-    //   console.log(response)
-    //   // setSelectedEmployee(employee);
-    //   // setSelectedAction(employee);
-    // });
+    const url = `${Environment.API_URL}/next_actions_for?employee=${employee.name}`;
+    
+    console.tron.log(url)
+    axios.get(url).then(response => {
+      setSelectedEmployee(employee);
+      setSelectedAction(employee);
+    });
   }
 
   const confirmOperation = operation => {
@@ -63,11 +63,12 @@ const TableEmployees = ({navigation}) => {
 
   const registerOperation = operation => {
     const newOperation = {
-      employee: selectedEmployee,
+      employee: selectedEmployee.name,
       operation: operation,
     };
     const url = `${Environment.API_URL}/operations`;
-    console.log(url)
+    console.tron.log(url)
+    console.tron.log(newOperation);
     // axios.post(url, newOperation).then(response => {
     //   navigation.navigate('Operations', { selectedEmployee: selectedEmployee })
     // });
